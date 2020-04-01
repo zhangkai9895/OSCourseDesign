@@ -1,6 +1,7 @@
 from typing import List
 
 import matplotlib
+from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import *
 from matplotlib import pyplot
 from matplotlib.axes import SubplotBase
@@ -57,7 +58,6 @@ class CpuShowWin(QWidget):
         verBoxLayout.addWidget(QPushButton("12321"))
         self.setLayout(verBoxLayout)
 
-
         pass
 
     def __init__(self, cpuCanvas):
@@ -67,15 +67,11 @@ class CpuShowWin(QWidget):
 
 # 用来显示实时使用率
 class CpuCanvas(FigureCanvas):
-    def __init__(self, parent, width, height, dpi):
-        self.figure = plt.figure(figsize=(width, height), dpi=dpi)
-        FigureCanvas.__init__(self, self.figure)  # 调用父类的构造函数
-        self.setParent(parent)
-        """
-        # MatLab中所有的图像都是位于figure中，
-        然后再figure中创建多个子图（axes）用于绘图
-        """
-        self.axes = self.figure.add_subplot(111)  # 定义一个子图
+    def __init__(self, SharedCanvas):
+        self.canvas=SharedCanvas
+        self.figure = SharedCanvas.figure  # 定义一个子图
+        print(self.figure)
+        self.axes = self.figure.add_subplot(111)
 
     def drawCurve(self, CpuUtilization: list):
         y = CpuUtilization
@@ -94,10 +90,9 @@ class CpuCanvas(FigureCanvas):
         # 设置x轴不显示任何东西
         plt.xticks([])
 
-        # plt.gca().xaxis.set_major_locator(plt.NullLocator())
-        # plt.gca().yaxis.set_major_locator(plt.NullLocator())
         plt.subplots_adjust(top=0.99, bottom=0.1, left=0.07, right=1, hspace=0, wspace=0)
         plt.margins(0, 0)
         self.axes.plot(x, y)  # 绘图
-        self.draw()  # 用于画布的刷新
+        self.canvas.draw()
+        # 用于画布的刷新
         # 传入一个list用来读取20个前状态的cpu占用率

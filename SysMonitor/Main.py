@@ -3,6 +3,8 @@ from typing import List
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from PyQt5.QtGui import QPainter, QPaintEvent
 from CPU import CpuCanvas, CpuShowWin, CpuCanvasHeight, CpuCanvasWidth
+from LeftWindow import LeftWindow
+from RightWindow import RightWindow
 import DISK
 import Memory
 import SYSTEM
@@ -11,16 +13,20 @@ import threading
 import sys
 from PyQt5.QtWidgets import *
 import random
+import matplotlib.pyplot as plt
 
 '''
 main中调用其他py文件中的数据
 并且执行绘图操作
 '''
 WinHeight = 800
-winWidth = 600
+winWidth = 800
 
+'''
+关于要用获取到参数都在这个地方做了声明
+'''
 listOfCpuUtilization = [0 for i in range(50)]  # 线程安全的
-cpuCanvas = CpuCanvas(None, CpuCanvasWidth / 100, CpuCanvasHeight / 100, 100)
+listOfMemoryUtilization = [0 for i in range(50)]  # 初始化所有时刻的占用率为0
 
 
 class DetectCpu(QThread):
@@ -31,25 +37,25 @@ class DetectCpu(QThread):
             # 模拟cpu的改变
             listOfCpuUtilization.pop(0)
             listOfCpuUtilization.append(random.randint(0, 100))
-            self.Change.emit(listOfCpuUtilization)
+            self.Change.emit(listOfCpuUtilization)  # 这里是发射信号，参数为跟新之后的cpu占用率
             sleep(0.5)
 
 
 class ApplicationWindow(QWidget):
+    SharedCanvas = None  # 初始化为空，在创建leftWindow之后赋值给他
 
     def initWindows(self):
         self.resize(winWidth, WinHeight)
         self.setWindowTitle("SysMonitor")
         # 全局的布局方式
-        vBox = QVBoxLayout()
-        vBox.addWidget(CpuShowWin(cpuCanvas))
-        vBox.addWidget(QPushButton("12345"))
-        self.setLayout(vBox)
+        hBox = QHBoxLayout()
+        leftWindow = LeftWindow(None, 600, 800, 100)
+        ApplicationWindow.SharedCanvas = leftWindow.SharedCanvas
+        rightWindow = RightWindow()
+        hBox.addWidget(leftWindow)
+        hBox.addWidget(rightWindow)
+        self.setLayout(hBox)
         self.show()
-
-    def drawPoints(self, list):
-        print(list)
-        self.update()
 
     def __init__(self):
         super().__init__()
@@ -59,8 +65,11 @@ class ApplicationWindow(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)  # 注册全局application
     window = ApplicationWindow()
+    CpuCanvas = CpuCanvas(ApplicationWindow.SharedCanvas)
     Cputhread: DetectCpu = DetectCpu()
-    Cputhread.Change.connect(cpuCanvas.drawCurve)
+    print(Cputhread.Change.connect(lambda list: CpuCanvas.drawCurve(list)))  # 更加高效的调用 选择lambda
+    # CpuCanvas.drawCurve(listOfCpuUtilization)
+    # 画布刷新
     Cputhread.start()
-    print(window)
+    # print(window)
     sys.exit(app.exec_())
