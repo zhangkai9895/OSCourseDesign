@@ -23,19 +23,90 @@ class CPU:
     '''
 
     def __init__(self):
-        self.example = None  # 示例
+        self.CpuID = self.getCpuID()
+        self.utilization = self.getUtilization()
+        self.speed = self.getSpeed()
+        self.processNum = self.getProcessNum()
+        self.threadNum = self.getThreadNum()
+        self.handleNum = self.getHandleNum()
+        self.runTime = self.getRunTime()
+        self.standardSpeed = self.getStandardSpeed()
+        self.slot = self.getSlot()
+        self.kernel = self.getKernel()
+        self.logicalProcess = self.getLogicalProcessors()
+        self.virtual = self.getVirtual()
+        self.L1Cache = self.getL1Cache()
+        self.L2Cache = self.getL2Cache()
+        self.L3Cache = self.getL3Cache()
+        self.UpdateCpuStatus()
+        # self.example = None  # 示例
 
-    def getCpuID(self):
+    """
+    ********定义数据具体的获取函数
+    """
+
+    def getCpuID(self) -> str:
         pass
 
-    def getCpuType(self):
+    def getUtilization(self) -> int:
         pass
 
-    def getCpuCurrentUtilization(self):
+    def getSpeed(self) -> float:
         pass
+
+    def getProcessNum(self) -> int:
+        pass
+
+    def getThreadNum(self) -> int:
+        pass
+
+    def getHandleNum(self) -> int:
+        pass
+
+    def getRunTime(self) -> str:
+        pass
+
+    def getStandardSpeed(self) -> float:
+        pass
+
+    def getSlot(self) -> int:
+        pass
+
+    def getKernel(self) -> int:
+        pass
+
+    def getLogicalProcessors(self) -> int:
+        pass
+
+    def getVirtual(self) -> bool:
+        pass
+
+    def getL1Cache(self) -> float:
+        pass
+
+    def getL2Cache(self) -> float:
+        pass
+
+    def getL3Cache(self) -> float:
+        pass
+
+    '''
+    ********此函数比较关键，用来供给实时监测的线程使用，用来不断刷新cpu的状态（cpu对象中的需要跟新的数据）
+    '''
+
+    def UpdateCpuStatus(self):
+        """
+        根性需要根性的数据的函数
+        :return: void
+        """
+        self.utilization = self.getUtilization()
+        self.speed = self.getSpeed()
+        self.processNum = self.getProcessNum()
+        self.threadNum = self.getThreadNum()
+        self.handleNum = self.getHandleNum()
+        self.runTime = self.getRunTime()
 
     # 等等其他的信息
-
     pass
 
 
@@ -65,10 +136,18 @@ class CpuShowWin(QWidget):
         self.initCpuWin(cpuCanvas)
 
 
-# 用来显示实时使用率
+"""
+
+这个类用来向左侧窗口中央画板绘制cpu实时占用率动态统计图
+得到调用的是drawCurve
+没有定义自己的Figure 用的是SharedCanvas提供的Figure画板，
+具体做的工作是清除SharedCanvas的Figure中的内容，然后将自己的子图（subplot）添加其中
+"""
+
+
 class CpuCanvas(FigureCanvas):
     def __init__(self, SharedCanvas):
-        self.canvas=SharedCanvas
+        self.canvas = SharedCanvas
         self.figure = SharedCanvas.figure  # 定义一个子图
         print(self.figure)
         self.axes = self.figure.add_subplot(111)

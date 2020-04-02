@@ -21,7 +21,6 @@ class SharedCanvas(FigureCanvas):
         self.setParent(parent)
 
 
-
 """
 这个是左边窗口的容器
 在这个容器内应该有一个Canvas，用供给其他的模块进行绘画
@@ -31,14 +30,18 @@ class SharedCanvas(FigureCanvas):
 class LeftWindow(QWidget):
 
     def initWindow(self):
+        # 设置布局中的各个控件之间的距离为0
+        self.verBoxLayout.setContentsMargins(0, 0, 10, 0)
+        self.verBoxLayout.setSpacing(0)
+
         self.verBoxLayout.addWidget(self.titleLabel)
         self.verBoxLayout.addWidget(self.SharedCanvas)
         self.verBoxLayout.addWidget(self.detailLabel)
 
         # 测试用样式
         self.titleLabel.setStyleSheet("background-color:blue")
-        self.titleLabel.setFixedSize(600,100)
-        self.detailLabel.setFixedSize(600,300)
+        self.titleLabel.setFixedSize(600, 100)
+        self.detailLabel.setFixedSize(600, 300)
         self.detailLabel.setStyleSheet("background-color:red")
         pass
 

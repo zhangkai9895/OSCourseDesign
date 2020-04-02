@@ -19,14 +19,17 @@ import matplotlib.pyplot as plt
 main中调用其他py文件中的数据
 并且执行绘图操作
 '''
-WinHeight = 800
-winWidth = 800
 
 '''
-关于要用获取到参数都在这个地方做了声明
+*****全局常量定义的位置*************
 '''
-listOfCpuUtilization = [0 for i in range(50)]  # 线程安全的
+WinHeight = 800
+winWidth = 800
+listOfCpuUtilization = [0 for i in range(50)]  # 线程安全的,注意这也是个常量，但其中的内容可变
 listOfMemoryUtilization = [0 for i in range(50)]  # 初始化所有时刻的占用率为0
+'''
+**************************************
+'''
 
 
 class DetectCpu(QThread):
@@ -42,18 +45,33 @@ class DetectCpu(QThread):
 
 
 class ApplicationWindow(QWidget):
+    """
+    ******全局变量在此声明**********************
+    通过Application.**调用，在调用之前找地方初始化
+    """
+    leftWindow = None
+    rightWindow = None
     SharedCanvas = None  # 初始化为空，在创建leftWindow之后赋值给他
+    Cpu = None
+    Memory = None
+    DISK = None
+    WIFI = None
+    '''
+    '''
 
     def initWindows(self):
         self.resize(winWidth, WinHeight)
         self.setWindowTitle("SysMonitor")
         # 全局的布局方式
         hBox = QHBoxLayout()
-        leftWindow = LeftWindow(None, 600, 800, 100)
-        ApplicationWindow.SharedCanvas = leftWindow.SharedCanvas
-        rightWindow = RightWindow()
-        hBox.addWidget(leftWindow)
-        hBox.addWidget(rightWindow)
+        hBox.setSpacing(0)
+        hBox.setContentsMargins(0, 0, 0, 0)
+        ApplicationWindow.leftWindow = LeftWindow(None, 600, 800, 100)
+        ApplicationWindow.SharedCanvas = ApplicationWindow.leftWindow.SharedCanvas
+        ApplicationWindow.rightWindow = RightWindow()
+        hBox.addWidget(ApplicationWindow.leftWindow)
+        hBox.addWidget(ApplicationWindow.rightWindow)
+
         self.setLayout(hBox)
         self.show()
 
@@ -71,5 +89,4 @@ if __name__ == '__main__':
     # CpuCanvas.drawCurve(listOfCpuUtilization)
     # 画布刷新
     Cputhread.start()
-    # print(window)
     sys.exit(app.exec_())
