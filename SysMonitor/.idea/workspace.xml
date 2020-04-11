@@ -39,6 +39,28 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager" selected="Python.Main">
+    <configuration name="CPU" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SysMonitor" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CPU.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DISK" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SysMonitor" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -127,9 +149,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SysMonitor" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Main" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.CPU" />
         <item itemvalue="Python.DISK" />
         <item itemvalue="Python.SYSTEM" />
       </list>
@@ -164,7 +210,11 @@
       <workItem from="1585701653559" duration="16144000" />
       <workItem from="1585733657052" duration="15435000" />
       <workItem from="1585750677479" duration="47000" />
-      <workItem from="1585797663029" duration="11582000" />
+      <workItem from="1585797663029" duration="13319000" />
+      <workItem from="1585819817069" duration="5919000" />
+      <workItem from="1585895623709" duration="9775000" />
+      <workItem from="1586331408715" duration="5250000" />
+      <workItem from="1586575522701" duration="11271000" />
     </task>
     <servers />
   </component>
@@ -176,7 +226,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -191,38 +243,38 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="765" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1585815597353" />
-    <state width="1237" height="204" key="GridCell.Tab.0.bottom" timestamp="1585813977303">
+    <state width="1237" height="220" key="GridCell.Tab.0.bottom" timestamp="1586594697290">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1585813977303" />
-    <state width="1237" height="204" key="GridCell.Tab.0.center" timestamp="1585813977303">
+    <state width="1237" height="220" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
+    <state width="1237" height="220" key="GridCell.Tab.0.center" timestamp="1586594697290">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1585813977303" />
-    <state width="1237" height="204" key="GridCell.Tab.0.left" timestamp="1585813977303">
+    <state width="1237" height="220" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
+    <state width="1237" height="220" key="GridCell.Tab.0.left" timestamp="1586594697290">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1585813977303" />
-    <state width="1237" height="204" key="GridCell.Tab.0.right" timestamp="1585813977303">
+    <state width="1237" height="220" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
+    <state width="1237" height="220" key="GridCell.Tab.0.right" timestamp="1586594697290">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1585813977303" />
-    <state width="1237" height="220" key="GridCell.Tab.1.bottom" timestamp="1585750521695">
+    <state width="1237" height="220" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
+    <state width="1237" height="220" key="GridCell.Tab.1.bottom" timestamp="1586594697291">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1585750521695" />
-    <state width="1237" height="220" key="GridCell.Tab.1.center" timestamp="1585750521695">
+    <state width="1237" height="220" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586594697291" />
+    <state width="1237" height="220" key="GridCell.Tab.1.center" timestamp="1586594697290">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1585750521695" />
-    <state width="1237" height="220" key="GridCell.Tab.1.left" timestamp="1585750521695">
+    <state width="1237" height="220" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
+    <state width="1237" height="220" key="GridCell.Tab.1.left" timestamp="1586594697290">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1585750521695" />
-    <state width="1237" height="220" key="GridCell.Tab.1.right" timestamp="1585750521695">
+    <state width="1237" height="220" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
+    <state width="1237" height="220" key="GridCell.Tab.1.right" timestamp="1586594697291">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1585750521695" />
+    <state width="1237" height="220" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1586594697291" />
     <state x="142" y="3" key="SettingsEditor" timestamp="1585797861280">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -231,46 +283,56 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="396" y="205" key="cloudConfig.SelfSettingsDialog/0.0.1280.720@0.0.1280.720" timestamp="1585655949865" />
-    <state x="112" y="37" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1585817433114">
+    <state x="123" y="48" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586587620094">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="112" y="37" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.720@0.0.1280.720" timestamp="1585817433114" />
-    <state x="325" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1585797664290">
+    <state x="123" y="48" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.720@0.0.1280.720" timestamp="1586587620094" />
+    <state x="325" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1586575523406">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="325" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1585797664290" />
-    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585817354740">
+    <state x="325" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1586575523406" />
+    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585818337117">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1585817354740" />
-    <state x="623" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1585570879722">
+    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1585818337117" />
+    <state x="623" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1586590046553">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="623" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1585570879722" />
+    <state x="623" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1586590046553" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/RightWindow.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/CPU.py</url>
+          <line>147</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/LeftWindow.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/CPU.py</url>
+          <line>148</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/RightWindow.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/CPU.py</url>
+          <line>149</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/CPU.py</url>
+          <line>150</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/CPU.py</url>
+          <line>151</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SysMonitor$SYSTEM.coverage" NAME="SYSTEM Coverage Results" MODIFIED="1585570663844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SysMonitor$Main.coverage" NAME="Main Coverage Results" MODIFIED="1585813818990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SysMonitor$Main.coverage" NAME="Main Coverage Results" MODIFIED="1586594673521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

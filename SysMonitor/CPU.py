@@ -1,13 +1,16 @@
-from typing import List
+import random
+from time import sleep
 
 import matplotlib
-from PyQt5.QtCore import QObject
+from PyQt5.QtCore import QThread, pyqtSignal
+
 from PyQt5.QtWidgets import *
-from matplotlib import pyplot
 from matplotlib.axes import SubplotBase
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
+
+from GlobalConst import listOfCpuUtilization
 
 matplotlib.use("Qt5Agg")
 
@@ -105,35 +108,54 @@ class CPU:
         self.threadNum = self.getThreadNum()
         self.handleNum = self.getHandleNum()
         self.runTime = self.getRunTime()
+        # 等等其他的信息
 
-    # 等等其他的信息
     pass
 
 
-# 创建cpu窗口控件
-class CpuShowWin(QWidget):
-    def initCpuWin(self, cpuCanvas):
-        verBoxLayout = QVBoxLayout()
+class DetectCpu(QThread):
+    """
+    单独的一个线程实时刷新cpu的相关的数据，
+    并且通过信号机制通知绘图函数进行图形绘制
+    """
+    Change = pyqtSignal(list)  # 注册信号，当改变数组元素改变的时候刷新
 
-        graphicsView = QGraphicsView()  # 创建一个GraphicsView
-        graphicsView.setObjectName("graphicsView")
-        '''
-        要把画布放在scene，然后把scene放在View中
-        '''
-        # 在这里我们暂时不绘制，到了更新数据的时候绘制//cpuCanvas.drawsurve
-        graphicsScene = QGraphicsScene()  # 创建scene
-        graphicsScene.addWidget(cpuCanvas)
-        graphicsView.setScene(graphicsScene)
-        graphicsView.setFixedSize(802, 202)
-        verBoxLayout.addWidget(graphicsView)
-        verBoxLayout.addWidget(QPushButton("12321"))
-        self.setLayout(verBoxLayout)
+    def run(self):
+        while self.ApplicationWindow.leftWindow.currentPage == self.ApplicationWindow.rightWindow.textBrowser1.__hash__():
+            # 模拟cpu的改变
+            listOfCpuUtilization.pop(0)
+            listOfCpuUtilization.append(random.randint(0,100))
+            self.Change.emit(listOfCpuUtilization)  # 这里是发射信号，参数为跟新之后的cpu占用率
+            sleep(0.5)
 
-        pass
-
-    def __init__(self, cpuCanvas):
+    def __init__(self, ApplicationWindow):
         super().__init__()
-        self.initCpuWin(cpuCanvas)
+        self.ApplicationWindow = ApplicationWindow
+
+
+class CpuShow:
+    """
+    这个类提供中间服务，是介于显示层和数据控制层的中间层，
+    从CPU类中获取CPU的相关硬件信息，并且把这些信息发送到相关的视图控件中
+    并且实时控制视图层的更新活动
+    """
+
+    def drawAllCpuAbout(self):
+        """
+        :param cpu:
+        :return:
+        """
+        thread = DetectCpu(self.ApplicationWindow)
+        thread.Change.connect(lambda CpuUtilization: self.cpuCanvas.drawCurve(CpuUtilization))
+        thread.start()
+        self.leftWindow.titleText.setText("这里是cpu")
+        self.leftWindow.detailText.setText("cpu详细信息")
+
+    def __init__(self, SharedCanvas, ApplicationWindow):
+        self.cpuCanvas = CpuCanvas(SharedCanvas)
+        self.cpu = CPU()
+        self.ApplicationWindow = ApplicationWindow
+        self.leftWindow = ApplicationWindow.leftWindow
 
 
 """
@@ -153,6 +175,7 @@ class CpuCanvas(FigureCanvas):
         self.axes = self.figure.add_subplot(111)
 
     def drawCurve(self, CpuUtilization: list):
+        print("cpu图表绘制正常")
         y = CpuUtilization
         x = list(range(50))
         self.axes.remove()

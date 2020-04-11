@@ -1,12 +1,12 @@
 import matplotlib
 from PyQt5.QtWidgets import *
-from matplotlib import pyplot
-from matplotlib.axes import SubplotBase
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
+
+from GlobalConst import *
 
 matplotlib.use("Qt5Agg")
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+
+import matplotlib.pyplot as plt
 
 '''
 定义全局的Canvas
@@ -34,24 +34,50 @@ class LeftWindow(QWidget):
         self.verBoxLayout.setContentsMargins(0, 0, 10, 0)
         self.verBoxLayout.setSpacing(0)
 
-        self.verBoxLayout.addWidget(self.titleLabel)
+        self.verBoxLayout.addWidget(self.titleText)
         self.verBoxLayout.addWidget(self.SharedCanvas)
-        self.verBoxLayout.addWidget(self.detailLabel)
+        self.verBoxLayout.addWidget(self.detailText)
 
         # 测试用样式
-        self.titleLabel.setStyleSheet("background-color:blue")
-        self.titleLabel.setFixedSize(600, 100)
-        self.detailLabel.setFixedSize(600, 300)
-        self.detailLabel.setStyleSheet("background-color:red")
+        self.titleText.setStyleSheet("background-color:blue")
+        self.titleText.setFixedSize(600, 100)
+        self.detailText.setFixedSize(600, 300)
+        self.detailText.setStyleSheet("background-color:red")
         pass
 
-    def __init__(self, parent, width, height, dpi):
+    def __init__(self, parent, width, height, dpi, ApplicationWindow):
         super().__init__()
         self.verBoxLayout = QVBoxLayout()
-        self.titleLabel = QLabel("测试的板块")  # 定义一个Label用来显示该硬件的名称版本等等
+        self.titleText = QTextBrowser()  # 定义一个TextBrowser用来显示该硬件的名称版本等等
         self.SharedCanvas = SharedCanvas(parent, width, height, dpi)
-        self.detailLabel = QLabel("测试用的板块")  # 这个Label用来显示具体的参数
+        self.detailText = QTextBrowser()  # 这个Label用来显示具体的参数
         self.setLayout(self.verBoxLayout)
+
+        # 为了在其他的类中能够正常的访问整个界面，
+        # 并且避免全局变量在不同的文件中调用出错的问题，采用了这种传递参数的方式
+        self.ApplicationWindow = ApplicationWindow
+        self.currentPage = self.ApplicationWindow.rightWindow.textBrowser1.__hash__()  # 默认进入cpu界面
         self.initWindow()
+
+    def drawLeftWindow(self, hashcode):
+        """
+        传入page编号，方便识别现在要绘制哪一个page，然后再去调用响应的绘制函数
+        这个函数作为点击事件的槽函数
+        :param hashcode:
+        :return:
+        """
+
+        print("信号绑定成功")
+        print(hashcode)
+        if hashcode is None:
+            return
+        if hashcode == abs(self.ApplicationWindow.rightWindow.textBrowser1.__hash__()) % 100000:
+            self.ApplicationWindow.CpuShow.drawAllCpuAbout()
+        if hashcode == abs(self.ApplicationWindow.rightWindow.textBrowser2.__hash__()) % 100000:
+            pass
+        if hashcode == abs(self.ApplicationWindow.rightWindow.textBrowser3.__hash__()) % 100000:
+            pass
+        if hashcode == abs(self.ApplicationWindow.rightWindow.textBrowser4.__hash__()) % 100000:
+            pass
 
     pass

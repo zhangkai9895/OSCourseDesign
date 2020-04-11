@@ -2,7 +2,7 @@ from time import sleep
 from typing import List
 from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from PyQt5.QtGui import QPainter, QPaintEvent
-from CPU import CpuCanvas, CpuShowWin, CpuCanvasHeight, CpuCanvasWidth
+from CPU import CpuCanvas, CPU, CpuShow
 from LeftWindow import LeftWindow
 from RightWindow import RightWindow
 import DISK
@@ -14,50 +14,48 @@ import sys
 from PyQt5.QtWidgets import *
 import random
 import matplotlib.pyplot as plt
+from GlobalConst import *
 
 '''
 main中调用其他py文件中的数据
 并且执行绘图操作
 '''
 
-'''
-*****全局常量定义的位置*************
-'''
-WinHeight = 800
-winWidth = 800
-listOfCpuUtilization = [0 for i in range(50)]  # 线程安全的,注意这也是个常量，但其中的内容可变
-listOfMemoryUtilization = [0 for i in range(50)]  # 初始化所有时刻的占用率为0
-'''
-**************************************
-'''
+
+class DetectMemory(QThread):
+    def run(self) -> None:
+        pass
 
 
-class DetectCpu(QThread):
-    Change = pyqtSignal(list)  # 注册信号，当改变数组元素改变的时候刷新
+class DetectDisk(QThread):
+    def run(self) -> None:
+        pass
 
-    def run(self):
-        while True:
-            # 模拟cpu的改变
-            listOfCpuUtilization.pop(0)
-            listOfCpuUtilization.append(random.randint(0, 100))
-            self.Change.emit(listOfCpuUtilization)  # 这里是发射信号，参数为跟新之后的cpu占用率
-            sleep(0.5)
+
+class DetectWifi(QThread):
+    def run(self) -> None:
+        pass
 
 
 class ApplicationWindow(QWidget):
     """
     ******全局变量在此声明**********************
     通过Application.**调用，在调用之前找地方初始化
+    *******************************************
     """
     leftWindow = None
     rightWindow = None
     SharedCanvas = None  # 初始化为空，在创建leftWindow之后赋值给他
-    Cpu = None
-    Memory = None
-    DISK = None
-    WIFI = None
+    CpuShow = None
+    MemoryShow = None
+    DISKShow = None
+    WIFIShow = None
     '''
     '''
+
+    def initHardWares(self):
+        ApplicationWindow.CpuShow = CpuShow(ApplicationWindow.SharedCanvas, self)
+        pass
 
     def initWindows(self):
         self.resize(winWidth, WinHeight)
@@ -66,11 +64,23 @@ class ApplicationWindow(QWidget):
         hBox = QHBoxLayout()
         hBox.setSpacing(0)
         hBox.setContentsMargins(0, 0, 0, 0)
-        ApplicationWindow.leftWindow = LeftWindow(None, 600, 800, 100)
+        # 这里生成左右窗口的顺序不能够改变，应为在生成左侧左边窗口的时候会调用右边窗口对象中的内容
+        ApplicationWindow.rightWindow = RightWindow(self)
+        ApplicationWindow.leftWindow = LeftWindow(None, 600, 800, 100, self)
         ApplicationWindow.SharedCanvas = ApplicationWindow.leftWindow.SharedCanvas
-        ApplicationWindow.rightWindow = RightWindow()
+
         hBox.addWidget(ApplicationWindow.leftWindow)
         hBox.addWidget(ApplicationWindow.rightWindow)
+        # 只有当两个左右窗体都生成了才能够为其中的信号绑定槽函数
+        ApplicationWindow.rightWindow.textBrowser1.doubleClicked.connect(
+            lambda hashcode:
+            ApplicationWindow.leftWindow.drawLeftWindow(hashcode))
+        ApplicationWindow.rightWindow.textBrowser2.doubleClicked.connect(
+            lambda hashcode: ApplicationWindow.leftWindow.drawLeftWindow(hashcode))
+        ApplicationWindow.rightWindow.textBrowser3.doubleClicked.connect(
+            lambda hashcode: ApplicationWindow.leftWindow.drawLeftWindow(hashcode))
+        ApplicationWindow.rightWindow.textBrowser4.doubleClicked.connect(
+            lambda hashcode: ApplicationWindow.leftWindow.drawLeftWindow(hashcode))
 
         self.setLayout(hBox)
         self.show()
@@ -78,15 +88,11 @@ class ApplicationWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.initWindows()
+        '''初始化硬件对象'''
+        self.initHardWares()
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)  # 注册全局application
     window = ApplicationWindow()
-    CpuCanvas = CpuCanvas(ApplicationWindow.SharedCanvas)
-    Cputhread: DetectCpu = DetectCpu()
-    print(Cputhread.Change.connect(lambda list: CpuCanvas.drawCurve(list)))  # 更加高效的调用 选择lambda
-    # CpuCanvas.drawCurve(listOfCpuUtilization)
-    # 画布刷新
-    Cputhread.start()
     sys.exit(app.exec_())

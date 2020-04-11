@@ -7,9 +7,7 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 
 matplotlib.use("Qt5Agg")
+
+
 class DISK:
-    pass
-
-
-class DiskShowWin(QWidget):
     pass
