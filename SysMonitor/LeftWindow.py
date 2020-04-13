@@ -39,10 +39,11 @@ class LeftWindow(QWidget):
         self.verBoxLayout.addWidget(self.detailText)
 
         # 测试用样式
-        self.titleText.setStyleSheet("background-color:blue")
+        # self.titleText.setStyleSheet("background-color:blue")
         self.titleText.setFixedSize(600, 100)
         self.detailText.setFixedSize(600, 300)
-        self.detailText.setStyleSheet("background-color:red")
+        # self.detailText.setStyleSheet("background-color:red")
+
         pass
 
     def __init__(self, parent, width, height, dpi, ApplicationWindow):
@@ -56,7 +57,7 @@ class LeftWindow(QWidget):
         # 为了在其他的类中能够正常的访问整个界面，
         # 并且避免全局变量在不同的文件中调用出错的问题，采用了这种传递参数的方式
         self.ApplicationWindow = ApplicationWindow
-        self.currentPage = self.ApplicationWindow.rightWindow.textBrowser1.__hash__()  # 默认进入cpu界面
+        self.currentPage = abs(self.ApplicationWindow.rightWindow.textBrowser1.__hash__()) % 100000  # 默认进入cpu界面
         self.initWindow()
 
     def drawLeftWindow(self, hashcode):
@@ -66,9 +67,6 @@ class LeftWindow(QWidget):
         :param hashcode:
         :return:
         """
-
-        print("信号绑定成功")
-        print(hashcode)
         if hashcode is None:
             return
         if hashcode == abs(self.ApplicationWindow.rightWindow.textBrowser1.__hash__()) % 100000:

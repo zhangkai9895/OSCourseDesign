@@ -11,6 +11,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -26,6 +27,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -36,7 +38,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RunManager" selected="Python.Main">
     <configuration name="CPU" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -215,6 +217,9 @@
       <workItem from="1585895623709" duration="9775000" />
       <workItem from="1586331408715" duration="5250000" />
       <workItem from="1586575522701" duration="11271000" />
+      <workItem from="1586674018679" duration="14953000" />
+      <workItem from="1586735353855" duration="4096000" />
+      <workItem from="1586757093759" duration="4466000" />
     </task>
     <servers />
   </component>
@@ -243,96 +248,69 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="765" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1585815597353" />
-    <state width="1237" height="220" key="GridCell.Tab.0.bottom" timestamp="1586594697290">
+    <state x="321" y="96" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1586756785648">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
-    <state width="1237" height="220" key="GridCell.Tab.0.center" timestamp="1586594697290">
+    <state x="321" y="96" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.720@0.0.1280.720" timestamp="1586756785648" />
+    <state width="1237" height="182" key="GridCell.Tab.0.bottom" timestamp="1586762263230">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
-    <state width="1237" height="220" key="GridCell.Tab.0.left" timestamp="1586594697290">
+    <state width="1237" height="182" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586762263230" />
+    <state width="1237" height="182" key="GridCell.Tab.0.center" timestamp="1586762263230">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
-    <state width="1237" height="220" key="GridCell.Tab.0.right" timestamp="1586594697290">
+    <state width="1237" height="182" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1586762263230" />
+    <state width="1237" height="182" key="GridCell.Tab.0.left" timestamp="1586762263230">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
-    <state width="1237" height="220" key="GridCell.Tab.1.bottom" timestamp="1586594697291">
+    <state width="1237" height="182" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1586762263230" />
+    <state width="1237" height="182" key="GridCell.Tab.0.right" timestamp="1586762263230">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586594697291" />
-    <state width="1237" height="220" key="GridCell.Tab.1.center" timestamp="1586594697290">
+    <state width="1237" height="182" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1586762263230" />
+    <state width="1237" height="216" key="GridCell.Tab.1.bottom" timestamp="1586757077952">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
-    <state width="1237" height="220" key="GridCell.Tab.1.left" timestamp="1586594697290">
+    <state width="1237" height="216" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586757077952" />
+    <state width="1237" height="216" key="GridCell.Tab.1.center" timestamp="1586757077948">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1586594697290" />
-    <state width="1237" height="220" key="GridCell.Tab.1.right" timestamp="1586594697291">
+    <state width="1237" height="216" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1586757077948" />
+    <state width="1237" height="216" key="GridCell.Tab.1.left" timestamp="1586757077948">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="220" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1586594697291" />
-    <state x="142" y="3" key="SettingsEditor" timestamp="1585797861280">
+    <state width="1237" height="216" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1586757077948" />
+    <state width="1237" height="216" key="GridCell.Tab.1.right" timestamp="1586757077952">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="142" y="3" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1585797861280" />
+    <state width="1237" height="216" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1586757077952" />
+    <state x="159" y="5" key="SettingsEditor" timestamp="1586698203468">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="159" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1586698203468" />
     <state x="396" y="205" key="cloudConfig.SelfSettingsDialog" timestamp="1585655949865">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="396" y="205" key="cloudConfig.SelfSettingsDialog/0.0.1280.720@0.0.1280.720" timestamp="1585655949865" />
-    <state x="123" y="48" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586587620094">
+    <state x="123" y="48" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586695975646">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="123" y="48" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.720@0.0.1280.720" timestamp="1586587620094" />
-    <state x="325" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1586575523406">
+    <state x="123" y="48" width="1095" height="535" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.720@0.0.1280.720" timestamp="1586695975646" />
+    <state x="325" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1586757097200">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="325" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1586575523406" />
-    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585818337117">
+    <state x="325" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1586757097200" />
+    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586762722639">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1585818337117" />
+    <state x="437" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1586762722639" />
     <state x="623" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1586590046553">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="623" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1586590046553" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CPU.py</url>
-          <line>147</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CPU.py</url>
-          <line>148</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CPU.py</url>
-          <line>149</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CPU.py</url>
-          <line>150</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CPU.py</url>
-          <line>151</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SysMonitor$SYSTEM.coverage" NAME="SYSTEM Coverage Results" MODIFIED="1585570663844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SysMonitor$Main.coverage" NAME="Main Coverage Results" MODIFIED="1586594673521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SysMonitor$Main.coverage" NAME="Main Coverage Results" MODIFIED="1586761796586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
