@@ -15,8 +15,7 @@ class WIFI:
         self.macaddress = self.getMacaddress()
         self.ipaddress = self.getIpaddress()
         self.netmask = self.getNetmask()
-        self.sentflow = self.getSentflow()
-        self.recflow = self.getRecflow()
+        self.sentflow,self.recflow = self.getspeed()
     '''
     定义数据具体的获取函数
     '''
@@ -54,38 +53,49 @@ class WIFI:
                 return  netmask
         pass
 
-    def getSentflow(self) ->str:
-        for interfacePerTcp in self.WMI.Win32_PerfRawData_Tcpip_TCPv4():
-            sentflow = float(interfacePerTcp.SegmentsSentPersec)
-        time.sleep(1)
-        for interfacePerTcp in self.WMI.Win32_PerfRawData_Tcpip_TCPv4():
-            pre_sentflow = float(interfacePerTcp.SegmentsSentPersec)
-        sent_network_flow = (sentflow - pre_sentflow)/1024
-        return "%.2f"%sent_network_flow  
-        
-
-    def getRecflow(self) ->str:
-        for interfacePerTcp in self.WMI.Win32_PerfRawData_Tcpip_TCPv4():
-            receivedflow = float(interfacePerTcp.SegmentsReceivedPersec)
-        time.sleep(1)
-        for interfacePerTcp in self.WMI.Win32_PerfRawData_Tcpip_TCPv4():
-            pre_recflow = float(interfacePerTcp.SegmentsReceivedPersec)
-        rec_network_flow = (receivedflow - pre_recflow)/1024
-        return "%.2f"%rec_network_flow 
-        
-
     def update(self):
         '''
         更新数据
         '''
-        self.WMI = wmi.WMI()
-        self.net_list = wmi.WMI().Win32_NetworkAdapterConfiguration(IPEnabled=1)
-        self.netname = self.getName()
-        self.model = self.getModel()
-        self.macaddress = self.getMacaddress()
-        self.ipaddress = self.getIpaddress()
-        self.netmask = self.getNetmask()
-        self.sentflow = self.getSentflow()
-        self.recflow = self.getRecflow()
+        self.recflow,self.sentflow = self.getspeed()
         pass
+    
+    def get_key(self):
 
+        key_info = psutil.net_io_counters(pernic=True).keys()
+
+        recv = {}
+        sent = {}
+
+        for key in key_info:
+            recv.setdefault(key, psutil.net_io_counters(pernic=True).get(key).bytes_recv)
+            sent.setdefault(key, psutil.net_io_counters(pernic=True).get(key).bytes_sent)
+        return key_info,recv,sent
+    
+    def get_rate(self):
+        key_info,old_recv,old_sent = self.get_key()
+
+        time.sleep(0.1)
+
+        key_info,now_recv,now_sent = self.get_key()
+
+        net_in = {}
+        net_out = {}
+
+        for key in key_info:
+            net_in.setdefault(key, float('%.2f' %((now_recv.get(key) - old_recv.get(key)) / 102.4)))
+            net_out.setdefault(key, float('%.2f' %((now_sent.get(key) - old_sent.get(key)) / 102.4)))
+
+        return key_info,net_in,net_out
+    
+    def getspeed(self):
+        key_info,net_in,net_out = self.get_rate()
+        for key in key_info:
+            if key == '以太网':
+                return net_in.get(key),net_out.get(key)
+            else:
+                pass    
+            
+    
+    
+    
