@@ -2,6 +2,7 @@ import win32com
 import wmi
 import platform
 import time
+import psutil
 
 class WIFI:
     '''
