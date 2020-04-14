@@ -5,9 +5,6 @@ import time
 import psutil
 
 class WIFI:
-    '''
-    设置需要获取在工作的WiFi相关属性作为WIFI类的属性
-    '''
     def __init__(self):
         self.WMI = wmi.WMI()
         self.net_list = wmi.WMI().Win32_NetworkAdapterConfiguration(IPEnabled=1)
@@ -17,9 +14,7 @@ class WIFI:
         self.ipaddress = self.getIpaddress()
         self.netmask = self.getNetmask()
         self.sentflow,self.recflow = self.getspeed()
-    '''
-    定义数据具体的获取函数
-    '''
+
 
     def getName(self) -> str:
         for nic in self.net_list:
@@ -53,12 +48,10 @@ class WIFI:
                 netmask = ""
                 return  netmask
         pass
-
+        
     def update(self):
-        '''
-        更新数据
-        '''
         self.recflow,self.sentflow = self.getspeed()
+
         pass
     
     def get_key(self):
@@ -88,15 +81,14 @@ class WIFI:
             net_out.setdefault(key, float('%.2f' %((now_sent.get(key) - old_sent.get(key)) / 102.4)))
 
         return key_info,net_in,net_out
-    
+
     def getspeed(self):
         key_info,net_in,net_out = self.get_rate()
         for key in key_info:
             if key == '以太网':
                 return net_in.get(key),net_out.get(key)
             else:
-                pass    
-            
+                pass            
     
     
     
