@@ -48,7 +48,7 @@ class WIFI:
     def getNetmask(self) ->str:
         for nic in self.net_list:
             if nic.IPAddress is not None:
-                return nic.netmask
+                return nic.IPSubnet
             else:
                 netmask = ""
                 return  netmask
