@@ -11,7 +11,7 @@ class WIFI:
     def __init__(self):
         self.WMI = wmi.WMI()
         self.net_list = wmi.WMI().Win32_NetworkAdapterConfiguration(IPEnabled=1)
-        self.status = wmi.WMI().Win32_NetworkAdapter()[1].NetEnabled #status表示以太网是否被使用
+        self.status = psutil.net_if_stats().get("以太网").isup        #status表示以太网是否被使用
         self.netname = self.getName()                                #netname表示网名 类似‘Netwtw08’
         self.model = self.getModel()                                 #model表示CIM_Setting对象的描述，即大类网卡名称
         self.macaddress = self.getMacaddress()                       #macaddress表示mac地址
